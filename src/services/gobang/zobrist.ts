@@ -1,4 +1,4 @@
-import { EPiece } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
 import { BOARD_SIZE } from "@/services/gobang/config";
 
 /* global BigInt */

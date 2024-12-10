@@ -1,7 +1,8 @@
 import { Cache } from "./cache";
 import { Evaluate } from "./eval";
+import { EPiece } from "@/types/gobang/role.type";
 import { Zobrist } from "@/services/gobang/zobrist";
-import { ABoard, EPiece, Point } from "@/types/gobang";
+import { ABoard, Point } from "@/types/gobang/board.type";
 import { BOARD_SIZE, FIVE } from "@/services/gobang/config";
 import { createArrayByValue, reversal } from "@/services/gobang/utils";
 

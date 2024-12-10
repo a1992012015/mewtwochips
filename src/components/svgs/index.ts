@@ -1,3 +1,4 @@
+import Form from "./form/form";
 import GobangBoard from "./gobang-board/gobang-board";
 import Gobang from "./gobang/gobang";
 import Mail from "./mail/mail";
@@ -12,6 +13,7 @@ import Pokeball from "./pokeball/pokeball";
 import FanaticsFlag from "./fanatics-flag/fanatics-flag";
 
 export {
+  Form,
   GobangBoard,
   Gobang,
   Mail,

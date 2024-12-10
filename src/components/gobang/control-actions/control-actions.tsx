@@ -14,9 +14,9 @@ import {
 } from "@/components/ui/select";
 import { Button } from "@/components/ui/button";
 import { randomRange } from "@/lib/random-range";
-import { EPiece, EPlayer } from "@/types/gobang";
 import { startGame } from "@/redux-store/reducer";
 import { useAppDispatch } from "@/redux-store/hooks";
+import { EPiece, EPlayer } from "@/types/gobang/role.type";
 import { ControlActionsConcede } from "../control-actions-concede";
 import { ControlActionsWithdraw } from "../control-actions-withdraw";
 import { Form, FormControl, FormField, FormItem, FormLabel } from "@/components/ui/form";
@@ -68,9 +68,9 @@ export function ControlActions(props: IProps) {
             Start
           </Button>
 
-          <ControlActionsWithdraw player={player} loading={loading} />
+          <ControlActionsWithdraw {...props} />
 
-          <ControlActionsConcede player={player} loading={loading} />
+          <ControlActionsConcede {...props} />
         </div>
 
         <div className="grid grid-cols-2 gap-2">

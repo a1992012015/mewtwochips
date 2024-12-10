@@ -18,9 +18,7 @@ const nextConfig: NextConfig = {
       },
     ],
   },
-  // experimental: {
-  //   nextScriptWorkers: true,
-  // },
+  productionBrowserSourceMaps: true, // 启用 Source Maps
 };
 
 export default nextConfig;

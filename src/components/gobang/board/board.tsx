@@ -5,9 +5,9 @@ import { createSelector } from "reselect";
 import { toast } from "sonner";
 
 import { cn } from "@/lib/utils";
-import { EPiece } from "@/types/gobang";
 import { GobangBoard } from "@/components/svgs";
 import { RootState } from "@/redux-store/store";
+import { EPiece } from "@/types/gobang/role.type";
 import { move, playGame } from "@/redux-store/reducer";
 import { calculatePoint, piecePoint } from "@/lib/calculate-point";
 import { useAppDispatch, useAppSelector } from "@/redux-store/hooks";

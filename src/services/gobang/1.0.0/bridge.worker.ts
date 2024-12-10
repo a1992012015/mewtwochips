@@ -1,37 +1,36 @@
 import {
-  EndType,
   EventResType,
   EventType,
   EWorkerAction,
   PlayType,
-  Point,
   StartType,
-  UndoType,
-} from "@/types/gobang";
-import { Board } from "./board";
-import { cache_hits, minmax } from "./minmax";
+} from "@/types/gobang/bridge.type";
+import { Point } from "@/types/gobang/board.type";
+import { Board } from "@/services/gobang/1.0.0/board";
 import { getBoardData } from "@/services/gobang/utils";
+import { cache_hits, minmax } from "@/services/gobang/1.0.0/minmax";
 
 onmessage = function (event: MessageEvent<EventType>) {
-  const { action, payload } = event.data;
+  console.log("event", event);
+  const { data } = event;
   let res: EventResType["payload"] | null = null;
-  switch (action) {
+  switch (data.action) {
     case EWorkerAction.START:
-      res = start(payload);
+      res = start(data.payload);
       break;
     case EWorkerAction.PLAY:
-      res = play(payload);
+      res = play(data.payload);
       break;
     case EWorkerAction.UNDO:
-      res = undo(payload);
+      res = undo();
       break;
     case EWorkerAction.END:
-      res = end(payload);
+      res = end();
       break;
     default:
       break;
   }
-  postMessage({ action, payload: res });
+  postMessage({ action: data.action, payload: res });
 };
 
 let board = new Board();
@@ -77,13 +76,13 @@ const play = (payload: PlayType["payload"]): EventResType["payload"] => {
   return getBoardData(board, score, move, bestPath);
 };
 
-const undo = (payload: UndoType["payload"]): EventResType["payload"] => {
-  console.log("undo ===>", payload);
+const undo = (): EventResType["payload"] => {
+  console.log("undo ===>");
   return getBoardData(board);
 };
 
-const end = (payload: EndType["payload"]): EventResType["payload"] => {
-  console.log("end ===>", payload);
+const end = (): EventResType["payload"] => {
+  console.log("end ===>");
   board.undo();
   board.undo();
   return getBoardData(board);

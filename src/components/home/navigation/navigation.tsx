@@ -14,7 +14,7 @@ import {
   NavigationMenuViewport,
 } from "@/components/ui/navigation-menu";
 import { AvatarMenu, MenuList, ModeToggle } from "@/components/home/navigation";
-import { Css3, File, Globe, Gobang, Graphql, Photos, Pokeball } from "@/components/svgs";
+import { Css3, File, Globe, Gobang, Graphql, Photos, Pokeball, Form } from "@/components/svgs";
 
 export interface NavigationPage {
   path: string;
@@ -38,6 +38,12 @@ const PAGES: NavigationPage[] = [
         label: "Counter",
         description: "A small example of Redux",
         Icon: File,
+      },
+      {
+        path: "/features/react-form",
+        label: "React hook form",
+        description: "A small example of react hook form",
+        Icon: Form,
       },
       {
         path: "/features/graphql",

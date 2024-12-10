@@ -1,7 +1,9 @@
 import { Cache } from "../cache";
 import { FIVE } from "@/services/gobang/config";
+import { EPiece } from "@/types/gobang/role.type";
 import { reversal } from "@/services/gobang/utils";
-import { ABoard, CacheType, EPiece, Point } from "@/types/gobang";
+import { CacheType } from "@/types/gobang/cache.type";
+import { ABoard, Point } from "@/types/gobang/board.type";
 
 const MAX = 1000000000;
 // 缓存内容

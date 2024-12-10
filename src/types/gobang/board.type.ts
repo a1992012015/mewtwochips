@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-import { EPiece } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
 
 export const PointSchema = z.tuple([z.number(), z.number()]);
 

@@ -12,7 +12,7 @@ import {
   TWO,
   TWO_TWO,
 } from "../config";
-import { EPiece } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
 import { createArrayByValue, reversal } from "../utils";
 import { coordinate2Position, hasInLine, position2Coordinate } from "./position";
 import { getAllShapesOfPoint, getShapeFast, isFive, isFour, shapes } from "./shape";
