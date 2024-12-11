@@ -3,8 +3,8 @@
 import { createSelector } from "reselect";
 
 import { cn } from "@/lib/utils";
-import { EPiece } from "@/types/gobang";
 import { RootState } from "@/redux-store/store";
+import { EPiece } from "@/types/gobang/role.type";
 import { useAppSelector } from "@/redux-store/hooks";
 import { ControlActions } from "@/components/gobang/control-actions";
 

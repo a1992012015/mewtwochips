@@ -1,5 +1,7 @@
+import { EPiece } from "@/types/gobang/role.type";
 import { DIRECTIONS } from "@/services/gobang/config";
-import { ABoard, EPiece, EventResType, PlayPoint, Point } from "@/types/gobang";
+import { EventResType } from "@/types/gobang/bridge.type";
+import { ABoard, PlayPoint, Point } from "@/types/gobang/board.type";
 
 /**
  * 反转当前的棋子角色

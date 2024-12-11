@@ -1,7 +1,9 @@
 import { createAsyncThunk, createSlice, type PayloadAction } from "@reduxjs/toolkit";
 
+import { Point } from "@/types/gobang/board.type";
+import { EPiece, EPlayer } from "@/types/gobang/role.type";
+import { PlayType, StartType } from "@/types/gobang/bridge.type";
 import { end, play, reversal, searchWinnerPath, start, undo } from "@/services/gobang";
-import { EPiece, EPlayer, PlayType, Point, StartType } from "@/types/gobang";
 
 export interface IGobangState {
   first: EPlayer;

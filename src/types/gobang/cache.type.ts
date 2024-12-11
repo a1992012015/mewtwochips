@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-import { EPiece, PointSchema } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
+import { PointSchema } from "@/types/gobang/board.type";
 
 export const CacheSchema = z.object({
   depth: z.number(),

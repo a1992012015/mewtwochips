@@ -1,4 +1,4 @@
-import { EPiece } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
 import { reversal } from "@/services/gobang/utils";
 
 export const patterns = {

@@ -1,15 +1,24 @@
-import { EventResType, EWorkerAction } from "@/types/gobang";
+import { EventResType, EWorkerAction } from "@/types/gobang/bridge.type";
 
-const worker = new Worker(new URL("./1.0.0/bridge.worker", import.meta.url));
-// const worker = new Worker(new URL("./2.0.0/bridge.worker", import.meta.url));
+let worker: Worker;
 
-console.log("bridge ===>", worker);
+const getWorkerInstance = () => {
+  if (!worker) {
+    worker = new Worker(new URL("./1.0.0/bridge.worker", import.meta.url));
+
+    console.log("bridge create worker ===>", worker);
+  }
+
+  return worker;
+};
 
 export const start = async (first: boolean, depth: number) => {
   return new Promise<EventResType["payload"]>((resolve) => {
-    worker.postMessage({ action: EWorkerAction.START, payload: { first, depth } });
+    console.log(getWorkerInstance());
 
-    worker.onmessage = (event: MessageEvent<EventResType>) => {
+    getWorkerInstance().postMessage({ action: EWorkerAction.START, payload: { first, depth } });
+
+    getWorkerInstance().onmessage = (event: MessageEvent<EventResType>) => {
       const { action, payload } = event.data;
       if (action === EWorkerAction.START) {
         resolve(payload);
@@ -20,9 +29,9 @@ export const start = async (first: boolean, depth: number) => {
 
 export const play = async (position: [number, number]) => {
   return new Promise<EventResType["payload"]>((resolve) => {
-    worker.postMessage({ action: EWorkerAction.PLAY, payload: { position } });
+    getWorkerInstance().postMessage({ action: EWorkerAction.PLAY, payload: { position } });
 
-    worker.onmessage = (event: MessageEvent<EventResType>) => {
+    getWorkerInstance().onmessage = (event: MessageEvent<EventResType>) => {
       const { action, payload } = event.data;
       if (action === EWorkerAction.PLAY) {
         resolve(payload);
@@ -33,9 +42,9 @@ export const play = async (position: [number, number]) => {
 
 export const undo = async () => {
   return new Promise<EventResType["payload"]>((resolve) => {
-    worker.postMessage({ action: EWorkerAction.UNDO });
+    getWorkerInstance().postMessage({ action: EWorkerAction.UNDO });
 
-    worker.onmessage = (event: MessageEvent<EventResType>) => {
+    getWorkerInstance().onmessage = (event: MessageEvent<EventResType>) => {
       const { action, payload } = event.data;
       if (action === EWorkerAction.UNDO) {
         resolve(payload);
@@ -46,9 +55,9 @@ export const undo = async () => {
 
 export const end = async () => {
   return new Promise<EventResType["payload"]>((resolve) => {
-    worker.postMessage({ action: EWorkerAction.END });
+    getWorkerInstance().postMessage({ action: EWorkerAction.END });
 
-    worker.onmessage = (event: MessageEvent<EventResType>) => {
+    getWorkerInstance().onmessage = (event: MessageEvent<EventResType>) => {
       const { action, payload } = event.data;
       if (action === EWorkerAction.END) {
         resolve(payload);

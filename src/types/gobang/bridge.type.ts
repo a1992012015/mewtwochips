@@ -1,6 +1,7 @@
 import { z } from "zod";
 
-import { EPiece, PointSchema } from "@/types/gobang";
+import { EPiece } from "@/types/gobang/role.type";
+import { PointSchema } from "@/types/gobang/board.type";
 
 export enum EWorkerAction {
   START = "Start",
@@ -44,20 +45,12 @@ export type PlayType = z.infer<typeof PlaySchema>;
 
 export const UndoSchema = z.object({
   action: z.literal(EWorkerAction.UNDO),
-  payload: z.object({
-    position: PointSchema,
-    depth: z.number().multipleOf(2),
-  }),
 });
 
 export type UndoType = z.infer<typeof UndoSchema>;
 
 export const EndSchema = z.object({
   action: z.literal(EWorkerAction.END),
-  payload: z.object({
-    position: PointSchema,
-    depth: z.number().multipleOf(2),
-  }),
 });
 
 export type EndType = z.infer<typeof EndSchema>;

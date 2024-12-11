@@ -13,9 +13,9 @@ import {
   AlertDialogTitle,
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog";
-import { EPiece } from "@/types/gobang";
 import { Button } from "@/components/ui/button";
 import { endGame } from "@/redux-store/reducer";
+import { EPiece } from "@/types/gobang/role.type";
 import { useAppDispatch } from "@/redux-store/hooks";
 
 interface IProps {

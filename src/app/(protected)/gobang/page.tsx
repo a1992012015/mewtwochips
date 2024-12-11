@@ -1,6 +1,7 @@
 import { Board } from "@/components/gobang/board";
 import { Control } from "@/components/gobang/control";
 import { PageHeader } from "@/components/page-header";
+// import { GobangWorker } from "@/components/gobang/gobang-worker";
 
 export const metadata = {
   title: "Gobang - 五子棋",
