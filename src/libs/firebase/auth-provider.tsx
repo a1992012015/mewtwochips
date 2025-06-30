@@ -1,8 +1,9 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
 import { User } from "firebase/auth";
 
+import { Spin } from "@/components/spin";
 import { firebaseAuth } from "@/libs/firebase/firebase-client";
 
 const AuthContext = createContext<AuthContextValue>({
@@ -23,7 +24,7 @@ export interface AuthProviderProps {
 export function AuthProvider(props: AuthProviderProps) {
   const { user, children } = props;
 
-  const [authState, setAuthState] = useState<AuthContextValue>({ user, loading: !user });
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     // Install servicerWorker if supported.
@@ -45,25 +46,22 @@ export function AuthProvider(props: AuthProviderProps) {
   }, []);
 
   useEffect(() => {
-    firebaseAuth.onAuthStateChanged((user) => {
-      console.log("Auth state changed", user);
+    const unsubscribe = firebaseAuth.onAuthStateChanged((u) => {
+      unsubscribe();
 
-      if (!authState.user && user) {
-        location.reload();
+      console.log({ server: !!user, client: !!u });
+
+      if (!!user == !!u) {
+        setLoading(false);
       } else {
-        setAuthState((a) => {
-          a.loading = false;
-          return a;
-        });
+        location.reload();
       }
     });
-  }, [authState.user]);
-
-  console.log("authState", authState);
+  }, [user]);
 
   return (
-    <AuthContext.Provider value={authState}>
-      {authState.loading ? "Loading" : children}
+    <AuthContext.Provider value={useMemo(() => ({ user, loading }), [loading, user])}>
+      {loading ? <Spin className="bg-transparent" loading={true} /> : children}
     </AuthContext.Provider>
   );
 }

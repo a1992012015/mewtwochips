@@ -45,7 +45,7 @@ export default async function RootLayout({ children, modal, params }: Readonly<I
 
   const user = await firebaseServerUser();
 
-  console.log("root user", user);
+  console.log("Root user", !!user);
 
   return (
     <html

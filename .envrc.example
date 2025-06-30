@@ -1,12 +1,9 @@
 # Secrets
 eval $(ejson2env secrets.ejson)
 
-# Next auth google
-export AUTH_GOOGLE_ID=""
-export AUTH_GOOGLE_SECRET=""
-export AUTH_SECRET=""
-export AUTH_TRUST_HOST=true
-
-export NEXT_PUBLIC_BASE_URL="http://localhost:4000"
-
 export PORT=4000
+
+export NEXT_PUBLIC_BASE_URL="http://localhost:${PORT}"
+
+export LOKALISE_API_TOKEN=""
+export LOKALISE_PROJECT_ID=""

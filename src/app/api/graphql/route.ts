@@ -13,21 +13,16 @@ const server = new ApolloServer<IContext>({
 });
 
 const handler = startServerAndCreateNextHandler<NextRequest, IContext>(server, {
-  context: async (req) => {
-    console.log("<========= startServerAndCreateNextHandler idToken");
-    console.log("req url", req.url);
-    console.log("req body", req.body);
+  context: async () => {
     const { cache } = server;
     return { pokemon: new PokemonDataSource({ cache }) };
   },
 });
 
 export const GET = async (request: NextRequest) => {
-  console.log("startServerAndCreateNextHandler", request.cookies);
   return await handler(request);
 };
 
 export const POST = async (request: NextRequest) => {
-  console.log("startServerAndCreateNextHandler", request.cookies);
   return await handler(request);
 };

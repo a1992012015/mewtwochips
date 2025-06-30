@@ -18,7 +18,7 @@ export const firebaseServerApp = async () => {
 
   return initializeServerApp(firebaseConfig, {
     authIdToken: idToken,
-    // appCheckToken: idToken,
+    appCheckToken: idToken,
     releaseOnDeref: headersList,
   });
 };

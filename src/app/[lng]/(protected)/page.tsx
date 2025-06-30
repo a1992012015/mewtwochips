@@ -9,6 +9,8 @@ export default async function HomePage() {
 
   const user = await firebaseServerUser();
 
+  console.log("user", user);
+
   return (
     <div className="page-content flex h-full items-center justify-center">
       <div className="flex flex-col justify-center gap-4">
@@ -35,7 +37,7 @@ export default async function HomePage() {
 
             <div className="contents">
               <p>{t("access-token", { ns: "home" })}:</p>
-              <p className="truncate">{user?.providerId}</p>
+              <p className="truncate">{user?.uid}</p>
             </div>
           </div>
         </div>

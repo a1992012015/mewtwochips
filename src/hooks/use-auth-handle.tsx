@@ -1,7 +1,6 @@
 "use client";
 
 import { useCallback, useMemo, useState } from "react";
-import { useRouter } from "next/navigation";
 import { toast } from "sonner";
 import { z } from "zod";
 import {
@@ -21,21 +20,21 @@ const googleProvider = new GoogleAuthProvider();
 const githubProvider = new GithubAuthProvider();
 
 export const useAuthHandle = () => {
-  const router = useRouter();
-
   const [isLoading, setIsLoading] = useState(false);
 
   const handleOAuthSignOut = useCallback(async () => {
     try {
-      await signOut(firebaseAuth);
-      router.refresh();
+      return signOut(firebaseAuth).then(() => {
+        location.reload();
+      });
     } catch (error) {
       console.log("handleOAuthSignOut", error);
     }
-  }, [router]);
+  }, []);
 
   const handleAuthSignIn = useCallback((credential: UserCredential) => {
     console.log("handleAuthSignIn", credential);
+    location.href = "/";
   }, []);
 
   const handleOAuthSignIn = useCallback(
